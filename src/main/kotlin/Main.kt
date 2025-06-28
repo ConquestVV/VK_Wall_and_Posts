@@ -7,7 +7,6 @@ fun main() {
     WallService.add(firstPost)
     WallService.add(secondPost)
     WallService.update(firstPost)
-    WallService.update(secondPost)
 
     println(WallService.get(0))
     println(WallService.get(1))
