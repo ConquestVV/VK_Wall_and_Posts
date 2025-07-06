@@ -3,7 +3,7 @@ package ru.netology
 data class Post(
     val id: Int,               // идентификатор записи
     val ownerId: Int,          // идентификатор владельца стены, на который размещена запись
-    val text: String,          // текст записи
+    val text: String?,          // текст записи
     val date: Int,             // время публикации записи
     val fromId: Int,           // идентификатор автора записи
     val replyOwnerId: Int,     // идентификатор владельца записи, в ответ на которую была оставлена текущая
@@ -16,9 +16,12 @@ data class Post(
     val canEdit: Boolean,      // может ли текущий юзер редактировать запись
     val isPinned: Boolean,     // информация о том, что запись закреплена
     val isFavorite: Boolean,    // информация о том, что запись сохранена в закладки
-    val likes: Likes = Likes(0, false, true, true)
+    val likes: Likes = Likes(0, false, true, true),
+    val attachment: List<Attachments>,
 ) {
     override fun toString(): String {
-        return "Post (id = $id, ownerId = $ownerId, text = $text, likes = $likes)"
+        return "Post (id = $id, ownerId = $ownerId, text = $message, likes = $likes)"
     }
+
+    var message = text ?: "404 not found :("
 }
