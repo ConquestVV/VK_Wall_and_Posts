@@ -20,7 +20,7 @@ data class Post(
     val attachment: List<Attachments>,
 ) {
     override fun toString(): String {
-        return "Post (id = $id, ownerId = $ownerId, text = $message, likes = $likes)"
+        return "Post (id = $id, ownerId = $ownerId, text = $message, likes = $likes, attach: $attachment)"
     }
 
     var message = text ?: "404 not found :("

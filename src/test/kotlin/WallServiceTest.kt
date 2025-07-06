@@ -22,7 +22,8 @@ class WallServiceTest {
    canEdit = true,
    isPinned = false,
    isFavorite = false,
-   likes = Likes(0, false, true, true)
+   likes = Likes(0, false, true, true),
+   attachment = emptyList()
   )
 
   val result = WallService.add(post)
@@ -33,8 +34,9 @@ class WallServiceTest {
 
  @Test
  fun update_shouldReturnTrue_whenPostExists() {
+  val arrayOfAttachments = emptyList<Attachments>()
   val post = WallService.add(
-   Post(0, 1, "Text", 0, 1, 0, 0, "", "post", 0, true, true, true, false, false)
+   Post(0, 1, "Text", 0, 1, 0, 0, "", "post", 0, true, true, true, false, false, likes = Likes(0,true,true,true),arrayOfAttachments)
   )
 
   val updated = post.copy(text = "Updated!")
@@ -46,7 +48,8 @@ class WallServiceTest {
 
  @Test
  fun update_shouldReturnFalse_whenPostDoesNotExist() {
-  val nonExistentPost = Post(999, 1, "Missing", 0, 1, 0, 0, "", "post", 0, true, true, true, false, false)
+  val arrayOfAttachments = emptyList<Attachments>()
+  val nonExistentPost = Post(0, 1, "Text", 0, 1, 0, 0, "", "post", 0, true, true, true, false, false, likes = Likes(0,true,true,true),arrayOfAttachments)
 
   val result = WallService.update(nonExistentPost)
 
