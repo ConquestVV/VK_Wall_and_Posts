@@ -18,9 +18,21 @@ data class Post(
     val isFavorite: Boolean,    // информация о том, что запись сохранена в закладки
     val likes: Likes = Likes(0, false, true, true),
     val attachment: List<Attachments>,
+    val comments: MutableList<Comments>
 ) {
     override fun toString(): String {
-        return "Post (id = $id, ownerId = $ownerId, text = $message, likes = $likes, attach: $attachment)"
+        val comment = mutableListOf<Comments>(id)
+        return "Post (id = $id, ownerId = $ownerId, text = $message, likes = $likes, attach: $attachment, comment: $comment)"
+    }
+
+    private fun <T> mutableListOf(index: Int): MutableList<Comments>? {
+        comments += comments.get(id)
+        if (index != comments.get(id).postId) {
+            return null
+        }
+        val comment = mutableListOf<Comments>()
+        comment += comments.get(id)
+        return comment
     }
 
     var message = text ?: "404 not found :("
