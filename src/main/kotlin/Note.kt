@@ -1,6 +1,8 @@
 package ru.netology
 
-open class Note(
+data class Note(
+    var text: String,
+    override var title: String,
     override var type: String,
     override var id: Int,
     override var ownerId: Int,
@@ -10,10 +12,15 @@ open class Note(
     override var description: String,
     override var size: Int,
     override var ext: String,
+    var isDeleted: Boolean = false
+
 ): Attachments() {
-    override var title: String = "Notes"
+
     override var date: Int = 15
     override fun toString(): String {
-        return "NOTE"
+        return "$title: $text"
     }
+
+
+
 }
